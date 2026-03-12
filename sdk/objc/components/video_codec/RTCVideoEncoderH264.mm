@@ -37,6 +37,7 @@
 #include "rtc_base/logging.h"
 #include "rtc_base/time_utils.h"
 #include "sdk/objc/components/video_codec/nalu_rewriter.h"
+#include "system_wrappers/include/clock.h"
 #include "third_party/libyuv/include/libyuv/convert_from.h"
 
 @interface RTC_OBJC_TYPE (RTCVideoEncoderH264)
@@ -399,6 +400,8 @@ NSUInteger GetMaxSampleRate(
   self = [super init];
   if (self) {
     _codecInfo = codecInfo;
+    _bitrateAdjuster = std::make_unique<webrtc::BitrateAdjuster>(
+        webrtc::Clock::GetRealTimeClock(), .5, .95);
     _packetizationMode = RTC_OBJC_TYPE(RTCH264PacketizationModeNonInterleaved);
     _profile_level_id =
         webrtc::ParseSdpForH264ProfileLevelId([codecInfo nativeSdpVideoFormat].parameters);

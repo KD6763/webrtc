@@ -20,6 +20,7 @@
 #include "rtc_base/checks.h"
 #include "rtc_base/rtc_certificate_generator.h"
 #include "rtc_base/ssl_identity.h"
+#include "rtc_base/system/plan_b_only.h"
 
 @implementation RTC_OBJC_TYPE (RTCConfiguration)
 

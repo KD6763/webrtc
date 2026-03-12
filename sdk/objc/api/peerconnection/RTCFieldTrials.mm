@@ -14,7 +14,7 @@
 #include <memory>
 #import "base/RTCLogging.h"
 
-#include "system_wrappers/include/field_trial.h"
+#include "api/environment/deprecated_global_field_trials.h"
 
 NSString *const RTC_CONSTANT_TYPE(RTCFieldTrialAudioForceABWENoTWCCKey) = @"WebRTC-Audio-ABWENoTWCC";
 NSString *const RTC_CONSTANT_TYPE(RTCFieldTrialFlexFec03AdvertisedKey) = @"WebRTC-FlexFEC-03-Advertised";
@@ -67,7 +67,7 @@ void RTC_OBJC_TYPE(RTCInitFieldTrialDictionary)(NSDictionary<NSString *, NSStrin
   }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-  webrtc::field_trial::InitFieldTrialsFromString(gFieldTrialInitString);
+  webrtc::DeprecatedGlobalFieldTrials::Set(gFieldTrialInitString);
   os_unfair_lock_unlock(&fieldTrialLock);
 #pragma clang diagnostic pop
 }

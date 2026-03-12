@@ -128,7 +128,7 @@ class ObjCEncodedImageBuffer : public webrtc::EncodedImageBufferInterface {
   encodedImage.timing_.flags = self.flags;
   encodedImage.timing_.encode_start_ms = self.encodeStartMs;
   encodedImage.timing_.encode_finish_ms = self.encodeFinishMs;
-  encodedImage._frameType = webrtc::VideoFrameType(self.frameType);
+  encodedImage.set_frame_type(webrtc::VideoFrameType(self.frameType));
   encodedImage.rotation_ = webrtc::VideoRotation(self.rotation);
   encodedImage.qp_ = self.qp ? self.qp.intValue : -1;
   encodedImage.content_type_ = (self.contentType == RTC_OBJC_TYPE(RTCVideoContentTypeScreenshare)) ?
